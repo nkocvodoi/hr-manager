@@ -142,6 +142,13 @@
               </div>
             </div>
           </div>
+          <div :class="$style.mt3">
+            <label :class="$style.checkboxContainer"
+              >Save Password?
+              <input type="checkbox" value="savepassword" :class="$style.mr1" />
+              <span :class="$style.checkmark"></span>
+            </label>
+          </div>
           <button type="submit" @click="onSubmit" :class="$style.submitBtn">
             Log in
           </button>
@@ -167,7 +174,7 @@ import * as Validation from "@/utils/validator/validator";
   },
 })
 export default class Login extends Vue {
-  public isSignupForm = true;
+  public isSignupForm = false;
   public email = "";
   public password = "";
   public confirmPassword = "";
@@ -192,14 +199,16 @@ export default class Login extends Vue {
   }
 
   onSubmit(): void {
-    console.log("aloloooooo");
+    window.open("/home");
   }
 }
 </script>
 
 <style lang="scss" scoped module>
+@import "@/styles/common.scss";
+
 .formStructor {
-  background-color: #222;
+  background-color: $color-lighter-veri-peri;
   border-radius: 15px;
   margin: auto;
   height: 550px;
@@ -263,8 +272,8 @@ export default class Login extends Vue {
     }
   }
   .submitBtn {
-    background-color: #6b92a4;
-    color: rgba(256, 256, 256, 0.7);
+    background-color: $color-veri-peri;
+    color: white;
     border: 0;
     border-radius: 15px;
     display: block;
@@ -278,11 +287,11 @@ export default class Login extends Vue {
     visibility: visible;
     -webkit-transition: all 0.3s ease;
     &.signup {
-      background-color: rgba(0, 0, 0, 0.4);
+      background-color: $color-dark-veri-peri;
     }
     &:hover {
       transition: all 0.3s ease;
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: $color-dark-veri-peri;
     }
   }
   .signup {

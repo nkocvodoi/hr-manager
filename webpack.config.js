@@ -15,7 +15,7 @@ module.exports = {
             // Requires >= sass-loader@^9.0.0
             options: {
               // This is the path to your variables
-              additionalData: "@import '@/styles/variables.scss'",
+              additionalData: "@import '@/styles/_variables.scss'",
             },
           },
         ],
@@ -32,7 +32,7 @@ module.exports = {
             // Requires sass-loader@^9.0.0
             options: {
               // This is the path to your variables
-              additionalData: "@import '@/styles/variables.scss';",
+              additionalData: "@import '@/styles/_variables.scss';",
             },
           },
         ],
