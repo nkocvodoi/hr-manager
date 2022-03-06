@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.formStructor">
-    <Form @submit="onSubmit" :validation-schema="schema" v-slot="{ errors }">
+    <Form :validation-schema="schema" v-slot="{ errors }">
       <div :class="[$style.signup, { [$style.slideUp]: !isSignupForm }]">
         <h2 :class="$style.formTitle" @click="isSignupForm = true">
           <span>or</span>Sign up
@@ -92,7 +92,11 @@
             </div>
           </div>
         </div>
-        <button type="submit" @click="onSubmit" :class="$style.submitBtn">
+        <button
+          type="submit"
+          @click="onSubmit(errors)"
+          :class="$style.submitBtn"
+        >
           Sign up
         </button>
       </div>
@@ -149,7 +153,11 @@
               <span :class="$style.checkmark"></span>
             </label>
           </div>
-          <button type="submit" @click="onSubmit" :class="$style.submitBtn">
+          <button
+            type="submit"
+            @click="onSubmit(errors)"
+            :class="$style.submitBtn"
+          >
             Log in
           </button>
         </div>
@@ -162,6 +170,13 @@
 import { Options, Vue } from "vue-class-component";
 import { Form, Field } from "vee-validate";
 import * as Validation from "@/utils/validator/validator";
+
+interface ValidationErrors {
+  password: string;
+  email: string;
+  required: string;
+  confirmPassword: string;
+}
 
 @Options({
   components: { Form, Field },
@@ -181,13 +196,13 @@ export default class Login extends Vue {
   public name = "";
   public schema = Validation.schema;
 
-  isInvalidForm(errors: any): boolean {
+  isInvalidForm(errors: ValidationErrors): boolean {
     if (errors.password || errors.email) {
       return true;
     } else return false;
   }
 
-  isValidSignUpForm(errors: any): boolean {
+  isValidSignUpForm(errors: ValidationErrors): boolean {
     if (
       errors.password ||
       errors.email ||
@@ -198,8 +213,13 @@ export default class Login extends Vue {
     } else return false;
   }
 
-  onSubmit(): void {
-    window.open("/home");
+  onSubmit(errors: ValidationErrors): void {
+    if (
+      (!this.isInvalidForm(errors) && !this.isSignupForm) ||
+      (!this.isValidSignUpForm(errors) && this.isSignupForm)
+    ) {
+      this.$router.push("/home");
+    }
   }
 }
 </script>

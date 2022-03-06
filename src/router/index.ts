@@ -1,18 +1,29 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Login from "../views/Login.vue";
+import LoginNew from "../views/LoginNew.vue";
 import Home from "../views/Home.vue";
+import SearchCandidates from "../views/SearchCandidates/SearchCandidates.vue";
+
 // import LoginValidate from "../views/LoginValidate.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "Login",
-    component: Login,
-  },
-  {
-    path: "/home",
     name: "Home",
     component: Home,
+    children: [
+      {
+        // UserProfile will be rendered inside User's <router-view>
+        // when /user/:id/profile is matched
+        path: "search-candidates",
+        component: SearchCandidates,
+      },
+      {
+        path: "/login",
+        name: "Login",
+        component: Login,
+      },
+    ],
   },
   // {
   //   path: "/login",

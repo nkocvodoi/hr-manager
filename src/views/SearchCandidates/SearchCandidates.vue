@@ -1,7 +1,5 @@
 <template>
-  <v-app id="home">
-    <Sidebar />
-    <Appbar />
+  <v-app id="search-candidates">
     <v-main>
       <v-container fluid> <router-view> </router-view> </v-container>
     </v-main>
@@ -9,14 +7,12 @@
 </template>
 
 <script lang="ts">
-import Sidebar from "@/components/page-essential/Sidebar.vue";
-import Appbar from "@/components/page-essential/Appbar.vue";
 import { Options, Vue } from "vue-class-component";
 
 @Options({
-  components: { Sidebar, Appbar },
+  components: {},
 })
-export default class Home extends Vue {}
+export default class SearchCandidates extends Vue {}
 </script>
 
 <style lang="scss" scoped module>

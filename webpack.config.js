@@ -1,6 +1,7 @@
 // webpack.config.js
 
 module.exports = {
+  transpileDependencies: ["vuetify"],
   module: {
     rules: [
       // SASS has different line endings than SCSS

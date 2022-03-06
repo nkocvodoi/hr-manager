@@ -5,14 +5,16 @@ import "vuetify/styles";
 import { aliases, fa } from "vuetify/lib/iconsets/fa";
 import { mdi } from "vuetify/lib/iconsets/mdi";
 import { createVuetify } from "vuetify";
+import * as components from "vuetify/lib/components";
+import * as directives from "vuetify/lib/directives";
 
 const myCustomLightTheme = {
   dark: false,
   colors: {
-    background: "#FFFFFF",
+    background: "#9999FF",
     surface: "#FFFFFF",
-    primary: "#6200EE",
-    "primary-darken-1": "#3700B3",
+    primary: "#9999FF",
+    "primary-darken-1": "#4F4FFF",
     secondary: "#03DAC6",
     "secondary-darken-1": "#018786",
     error: "#B00020",
@@ -22,7 +24,24 @@ const myCustomLightTheme = {
   },
 };
 
-export default createVuetify({
+const myCustomDarkTheme = {
+  dark: true,
+  colors: {
+    background: "#000000",
+    surface: "#FFFFFF",
+    primary: "#9999FF",
+    "primary-darken-1": "#4F4FFF",
+    secondary: "#03DAC6",
+    "secondary-darken-1": "#018786",
+    error: "#B00020",
+    info: "#2196F3",
+    success: "#4CAF50",
+    warning: "#FB8C00",
+  },
+};
+const vuetify = createVuetify({
+  components,
+  directives,
   icons: {
     defaultSet: "fa",
     aliases: {
@@ -38,6 +57,8 @@ export default createVuetify({
   theme: {
     themes: {
       light: myCustomLightTheme,
+      dark: myCustomDarkTheme,
     },
   },
 });
+export default vuetify;
